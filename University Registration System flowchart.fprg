@@ -1,0 +1,1090 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="samab"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2022-01-19 09:50:18 PM"/>
+        <attribute name="created" value="c2FtYWI7REVTS1RPUC0yQjNLN0k2OzIwMjItMDEtMDc7MDc6MTc6MTcgUE07MjgwNA=="/>
+        <attribute name="edited" value="c2FtYWI7REVTS1RPUC0yQjNLN0k2OzIwMjItMDEtMTk7MDk6NTA6MTggUE07MTMxOzMwMTU="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="FirstName, MiddleName, LastName, Gender, Nationality, IdType, StudentId, Password, Country, Governorate, City, District, StreetName, HouseNumber, FlatNumber, PostalCode, MailingCountry, MailingGovernorate, MailingCity, MailingDistrict, MailingStreetName, MailingHouseNumber, MailingFlatNumber, MailingPostalCode, StudentEmail, PhoneNumber, HomePhoneNumber, EnrolmentTerm, Department, InstructorName, InstructorCode, PaymentMethod, BankOfTransaction, TransactionNumber" type="String" array="True" size="5"/>
+            <declare name="DayOfBirth, MonthOfBirth, YearOfBirth, EnrolmentYear, RegNum, FinishedCreditHours, Term, PaymentsCount, TotalPayment, AmountPaid, DayOfTransaction, MonthOfTransaction, YearOfTransaction, MaxCreditHours, CurrentCreditHours, RemainingCreditHours" type="Integer" array="True" size="5"/>
+            <declare name="TotalGpa, Gpa1, Gpa2, Gpa3, Gpa4, Gpa5, Gpa6, Gpa7, Gpa8" type="Real" array="True" size="5"/>
+            <call expression="ScanStudentData(FirstName,MiddleName,LastName,Gender,Nationality,DayOfBirth,MonthOfBirth,YearOfBirth,IdType,StudentId,Password,Country,Governorate,City,District,StreetName,HouseNumber,FlatNumber,PostalCode,MailingCountry, MailingGovernorate, MailingCity, MailingDistrict, MailingStreetName, MailingHouseNumber, MailingFlatNumber, MailingPostalCode,StudentEmail,PhoneNumber,HomePhoneNumber,EnrolmentTerm,EnrolmentYear,RegNum,Department, InstructorName, InstructorCode,FinishedCreditHours,Term,PaymentMethod,PaymentsCount,TotalPayment,BankOfTransaction,TransactionNumber,AmountPaid,DayOfTransaction,MonthOfTransaction,YearOfTransaction,MaxCreditHours, CurrentCreditHours,RemainingCreditHours,TotalGpa,Gpa1,Gpa2,Gpa3,Gpa4,Gpa5,Gpa6,Gpa7,Gpa8)"/>
+            <declare name="z, choice, ProgramTerminator, StudentTerminator" type="Integer" array="False" size=""/>
+            <declare name="Continue" type="String" array="False" size=""/>
+            <assign variable="ProgramTerminator" expression="1"/>
+            <while expression="ProgramTerminator==1">
+                <assign variable="z" expression="RefPassword(RegNum,Password)"/>
+                <assign variable="StudentTerminator" expression="1"/>
+                <while expression="StudentTerminator==1">
+                    <output expression="&quot;List of function&#13;&#10;1 - Print Student Data&#13;&#10;2- Calculate student age&#13;&#10;3- Calculate the number of credit hours&#13;&#10;4- Configure Semester Gpa&#13;&#10;5- Configure contact details&#13;&#10;Choose the funcion required&quot;" newline="True"/>
+                    <input variable="Choice"/>
+                    <while expression="Choice&lt;1 || Choice&gt;5">
+                        <output expression="&quot;Incorrect choice entered, Please enter correct choice from the list below : &quot;" newline="True"/>
+                        <output expression="&quot;List of function&#13;&#10;1 - Print Student Data&#13;&#10;2- Calculate student age&#13;&#10;3- Calculate the number of credit hours&#13;&#10;4- Configure Semester Gpa&#13;&#10;5- Configure contact details&#13;&#10;Choose the funcion required&quot;" newline="True"/>
+                        <input variable="Choice"/>
+                    </while>
+                    <if expression="Choice==1">
+                        <then>
+                            <call expression="PrintStudentData(z,FirstName,MiddleName,LastName,Gender,Nationality,DayOfBirth,MonthOfBirth,YearOfBirth,IdType,StudentId,Password,Country,Governorate,City,District,StreetName,HouseNumber,FlatNumber,PostalCode,MailingCountry, MailingGovernorate, MailingCity, MailingDistrict, MailingStreetName, MailingHouseNumber, MailingFlatNumber, MailingPostalCode,StudentEmail,PhoneNumber,HomePhoneNumber,EnrolmentTerm,EnrolmentYear,RegNum,Department, InstructorName, InstructorCode,FinishedCreditHours,Term,PaymentMethod,PaymentsCount,TotalPayment,BankOfTransaction,TransactionNumber,AmountPaid,DayOfTransaction,MonthOfTransaction,YearOfTransaction,MaxCreditHours, CurrentCreditHours,RemainingCreditHours,TotalGpa,Gpa1,Gpa2,Gpa3,Gpa4,Gpa5,Gpa6,Gpa7,Gpa8)"/>
+                        </then>
+                        <else>
+                            <if expression="Choice==2">
+                                <then>
+                                    <call expression="CalcAge(z,FirstName,MiddleName,LastName,RegNum,DayOfBirth,MonthOfBirth,YearOfBirth)"/>
+                                </then>
+                                <else>
+                                    <if expression="Choice==3">
+                                        <then>
+                                            <call expression="CreditHours(z,FirstName,MiddleName,LastName,RegNum,Term,FinishedCreditHours,MaxCreditHours,CurrentCreditHours,RemainingCreditHours)"/>
+                                        </then>
+                                        <else>
+                                            <if expression="Choice==4 &amp;&amp; Term[z]!=1">
+                                                <then>
+                                                    <call expression="ChangeGpa(z,FirstName,MiddleName,LastName,RegNum,Term,Gpa1,Gpa2,Gpa3,Gpa4,Gpa5,Gpa6,Gpa7,Gpa8,TotalGpa)"/>
+                                                </then>
+                                                <else>
+                                                    <if expression="Choice==5">
+                                                        <then>
+                                                            <call expression="ChangeContactDetails(z,FirstName,MiddleName,LastName,RegNum,StudentEmail, PhoneNumber,HomePhoneNumber)"/>
+                                                        </then>
+                                                        <else/>
+                                                    </if>
+                                                </else>
+                                            </if>
+                                        </else>
+                                    </if>
+                                </else>
+                            </if>
+                        </else>
+                    </if>
+                    <if expression="Choice==4 &amp;&amp; Term[z]==1">
+                        <then>
+                            <output expression="&quot;Student is still at term 1 . GPA CANNOT BE CHANGED&quot;" newline="True"/>
+                        </then>
+                        <else/>
+                    </if>
+                    <output expression="&quot;Do you want to perform another function for student &quot; &amp;RegNum[z]" newline="True"/>
+                    <input variable="Continue"/>
+                    <if expression="Continue==&quot;Yes&quot; || Continue==&quot;YEs&quot; || Continue==&quot;YES&quot; || Continue==&quot;yeS&quot; || Continue==&quot;yES&quot; || Continue==&quot;yEs&quot; || Continue==&quot;yes&quot;">
+                        <then>
+                            <assign variable="StudentTerminator" expression="1"/>
+                        </then>
+                        <else>
+                            <assign variable="StudentTerminator" expression="0"/>
+                            <output expression="&quot;Thanks for using AASTMT registration system&quot;" newline="True"/>
+                        </else>
+                    </if>
+                </while>
+                <output expression="&quot;Do you want to perform another function for another student &quot;" newline="True"/>
+                <input variable="Continue"/>
+                <if expression="Continue==&quot;Yes&quot; || Continue==&quot;YEs&quot; || Continue==&quot;YES&quot; || Continue==&quot;yeS&quot; || Continue==&quot;yES&quot; || Continue==&quot;yEs&quot; || Continue==&quot;yes&quot;">
+                    <then>
+                        <assign variable="ProgramTerminator" expression="1"/>
+                    </then>
+                    <else>
+                        <assign variable="ProgramTerminator" expression="0"/>
+                    </else>
+                </if>
+            </while>
+            <output expression="&quot;Thanks for using AASTMT registration system&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="CalcAge" type="None" variable="">
+        <parameters>
+            <parameter name="z" type="Integer" array="False"/>
+            <parameter name="FirstName" type="String" array="True"/>
+            <parameter name="MiddleName" type="String" array="True"/>
+            <parameter name="LastName" type="String" array="True"/>
+            <parameter name="RegNum" type="Integer" array="True"/>
+            <parameter name="DayOfBirth" type="Integer" array="True"/>
+            <parameter name="MonthOfBirth" type="Integer" array="True"/>
+            <parameter name="YearOfBirth" type="Integer" array="True"/>
+        </parameters>
+        <body>
+            <declare name="Day, Month, year, Age, i" type="Integer" array="False" size=""/>
+            <assign variable="i" expression="z"/>
+            <output expression="&quot;Student name : &quot;&amp;FirstName[i]" newline="False"/>
+            <output expression="&quot; &quot;&amp;MiddleName[i]" newline="False"/>
+            <output expression="&quot; &quot;&amp;LastName[i]" newline="True"/>
+            <output expression="&quot;Registration number : &quot; &amp;RegNum[i]" newline="True"/>
+            <output expression="&quot;Enter today date by day, month and year : &quot;" newline="True"/>
+            <output expression="&quot;Day : &quot;" newline="True"/>
+            <input variable="Day"/>
+            <while expression="Day&lt;1 || Day&gt;31">
+                <output expression="&quot;Incorrect day entered, Enter correct day : &quot;" newline="False"/>
+                <input variable="Day"/>
+            </while>
+            <output expression="&quot;Month : &quot;" newline="True"/>
+            <input variable="Month"/>
+            <while expression="Month&lt;1 || Month&gt;12">
+                <output expression="&quot;Incorrect month entered, Enter correct month : &quot;" newline="False"/>
+                <input variable="Month"/>
+            </while>
+            <output expression="&quot;Year : &quot;" newline="True"/>
+            <input variable="Year"/>
+            <while expression="Year&lt;1980 || Year&gt;2022">
+                <output expression="&quot;Incorrect year entered, Enter correct year : &quot;" newline="False"/>
+                <input variable="Year"/>
+            </while>
+            <assign variable="Age" expression="(Year-YearOfBirth[i])+((Month-MonthOfBirth[i])/12)+((Day-DayofBirth[i])/365)"/>
+            <output expression="&quot;Student Age : &quot; &amp;Age" newline="True"/>
+            <output expression="&quot;at &quot; &amp;Day" newline="False"/>
+            <output expression="&quot; / &quot; &amp;Month" newline="False"/>
+            <output expression="&quot; / &quot; &amp;Year" newline="True"/>
+        </body>
+    </function>
+    <function name="ChangeContactDetails" type="None" variable="">
+        <parameters>
+            <parameter name="z" type="Integer" array="False"/>
+            <parameter name="FirstName" type="String" array="True"/>
+            <parameter name="MiddleName" type="String" array="True"/>
+            <parameter name="LastName" type="String" array="True"/>
+            <parameter name="RegNum" type="Integer" array="True"/>
+            <parameter name="StudentEmail" type="String" array="True"/>
+            <parameter name="PhoneNumber" type="String" array="True"/>
+            <parameter name="HomePhoneNumber" type="String" array="True"/>
+        </parameters>
+        <body>
+            <declare name="i, Choice" type="Integer" array="False" size=""/>
+            <declare name="NewStudentEmail, NewPhoneNumber, NewHomePhoneNumber, TempStudentEmail, TempPhoneNumber, TempHomePhoneNumber" type="String" array="False" size=""/>
+            <assign variable="i" expression="z"/>
+            <output expression="&quot;Student name : &quot;&amp;FirstName[i]" newline="False"/>
+            <output expression="&quot; &quot;&amp;MiddleName[i]" newline="False"/>
+            <output expression="&quot; &quot;&amp;LastName[i]" newline="True"/>
+            <output expression="&quot;Registration number : &quot; &amp;RegNum[i]" newline="True"/>
+            <output expression="&quot;Please enter the new student mail : &#13;&#10;(if you do not want to change your mail please enter the same mail&quot;" newline="True"/>
+            <input variable="NewStudentEmail"/>
+            <assign variable="TempStudentEmail" expression="StudentEmail[i]"/>
+            <assign variable="StudentEmail[i]" expression="NewStudentEmail"/>
+            <output expression="&quot;Please enter the new phone number : &#13;&#10;(if you do not want to change your phone number please enter the same number&quot;" newline="True"/>
+            <input variable="NewPhoneNumber"/>
+            <assign variable="TempPhoneNumber" expression="PhoneNumber[i]"/>
+            <assign variable="PhoneNumber[i]" expression="NewPhoneNumber"/>
+            <output expression="&quot;Please enter the new home phone number : &#13;&#10;(if you do not want to change your home phone number please enter the same number&quot;" newline="True"/>
+            <input variable="NewHomePhoneNumber"/>
+            <assign variable="TempHomePhoneNumber" expression="HomePhoneNumber[i]"/>
+            <assign variable="HomePhoneNumber[i]" expression="NewHomePhoneNumber"/>
+            <output expression="&quot;Student contact details before configuration : &quot;" newline="True"/>
+            <output expression="&quot;Contact e-mail : &quot; &amp;TempStudentEmail" newline="True"/>
+            <output expression="&quot;Phone number : &quot; &amp;TempPhoneNumber" newline="True"/>
+            <output expression="&quot;Home phone number : &quot; &amp;TempHomePhoneNumber" newline="True"/>
+            <output expression="&quot;Student contact details after configuration : &quot;" newline="True"/>
+            <output expression="&quot;Contact e-mail : &quot; &amp;StudentEmail[i]" newline="True"/>
+            <output expression="&quot;Phone number : &quot; &amp;PhoneNumber[i]" newline="True"/>
+            <output expression="&quot;Home phone number : &quot; &amp;HomePhoneNumber[i]" newline="True"/>
+        </body>
+    </function>
+    <function name="ChangeGpa" type="None" variable="">
+        <parameters>
+            <parameter name="z" type="Integer" array="False"/>
+            <parameter name="FirstName" type="String" array="True"/>
+            <parameter name="MiddleName" type="String" array="True"/>
+            <parameter name="LastName" type="String" array="True"/>
+            <parameter name="RegNum" type="Integer" array="True"/>
+            <parameter name="Term" type="Integer" array="True"/>
+            <parameter name="Gpa1" type="Real" array="True"/>
+            <parameter name="Gpa2" type="Real" array="True"/>
+            <parameter name="Gpa3" type="Real" array="True"/>
+            <parameter name="Gpa4" type="Real" array="True"/>
+            <parameter name="Gpa5" type="Real" array="True"/>
+            <parameter name="Gpa6" type="Real" array="True"/>
+            <parameter name="Gpa7" type="Real" array="True"/>
+            <parameter name="Gpa8" type="Real" array="True"/>
+            <parameter name="TotalGpa" type="Real" array="True"/>
+        </parameters>
+        <body>
+            <declare name="Choice, i, Amount, j" type="Integer" array="False" size=""/>
+            <declare name="NewGpa, TempGpa1, TempGpa2, TempGpa3, TempGpa4, TempGpa5, TempGpa6, TempGpa7, TempGpa8, TempTotalGpa" type="Real" array="False" size=""/>
+            <assign variable="i" expression="z"/>
+            <assign variable="TempTotalGpa" expression="TotalGpa[i]"/>
+            <output expression="&quot;Student name : &quot;&amp;FirstName[i]" newline="False"/>
+            <output expression="&quot; &quot;&amp;MiddleName[i]" newline="False"/>
+            <output expression="&quot; &quot;&amp;LastName[i]" newline="True"/>
+            <output expression="&quot;Registration number : &quot; &amp;RegNum[i]" newline="True"/>
+            <output expression="&quot;How many semesters are you going to change ? (MUST BE A NUMBER FROM 1 TO 8&quot;" newline="True"/>
+            <input variable="Amount"/>
+            <while expression="Amount&lt;1 || Amount&gt;8">
+                <output expression="&quot;Incorrect no. of terms entered , please enter correct number : &quot;" newline="True"/>
+                <input variable="Amount"/>
+            </while>
+            <for variable="j" start="1" end="Amount" direction="inc" step="1">
+                <output expression="&quot;Please choose the semester you want to change its GPA (MUST BE A NUMBER FROM 1 TO 8 IN THE CORRECT ORDER OF TERMS)&quot;" newline="True"/>
+                <input variable="Choice"/>
+                <while expression="Choice&lt;1 || Choice&gt;8">
+                    <output expression="&quot;Incorrect term entered , please enter correct term : &quot;" newline="True"/>
+                    <input variable="Choice"/>
+                </while>
+                <output expression="&quot;Enter your new Gpa : &quot;" newline="True"/>
+                <input variable="NewGpa"/>
+                <while expression="NewGpa&lt;0 || NewGpa&gt;4">
+                    <output expression="&quot;Incorrect Gpa entered, Enter your new Gpa : &quot;" newline="True"/>
+                    <input variable="NewGpa"/>
+                </while>
+                <if expression="Choice==1">
+                    <then>
+                        <assign variable="TempGpa1" expression="Gpa1[i]"/>
+                        <assign variable="Gpa1[i]" expression="NewGpa"/>
+                        <assign variable="TotalGpa[i]" expression="Gpa1[i]"/>
+                        <output expression="&quot;Old Gpa for term 1 : &quot; &amp;TempGpa1" newline="True"/>
+                        <output expression="&quot;After configuration : &quot;" newline="True"/>
+                        <output expression="&quot;New Gpa for term 1 : &quot; &amp;Gpa1[i]" newline="True"/>
+                    </then>
+                    <else>
+                        <if expression="Choice==2">
+                            <then>
+                                <assign variable="TempGpa2" expression="Gpa2[i]"/>
+                                <assign variable="Gpa2[i]" expression="NewGpa"/>
+                                <assign variable="TotalGpa[i]" expression="(Gpa1[i]+Gpa2[i])/2"/>
+                                <output expression="&quot;Old Gpa for term 2 : &quot; &amp;TempGpa2" newline="True"/>
+                                <output expression="&quot;After configuration : &quot;" newline="True"/>
+                                <output expression="&quot;New Gpa for term 2 : &quot; &amp;Gpa2[i]" newline="True"/>
+                            </then>
+                            <else>
+                                <if expression="Choice==3">
+                                    <then>
+                                        <assign variable="TempGpa3" expression="Gpa3[i]"/>
+                                        <assign variable="Gpa3[i]" expression="NewGpa"/>
+                                        <assign variable="TotalGpa[i]" expression="(Gpa1[i]+Gpa2[i]+Gpa3[i])/3"/>
+                                        <output expression="&quot;Old Gpa for term 3 : &quot; &amp;TempGpa3" newline="True"/>
+                                        <output expression="&quot;After configuration : &quot;" newline="True"/>
+                                        <output expression="&quot;New Gpa for term 3 : &quot; &amp;Gpa3[i]" newline="True"/>
+                                    </then>
+                                    <else>
+                                        <if expression="Choice==4">
+                                            <then>
+                                                <assign variable="TempGpa4" expression="Gpa4[i]"/>
+                                                <assign variable="Gpa4[i]" expression="NewGpa"/>
+                                                <assign variable="TotalGpa[i]" expression="(Gpa1[i]+Gpa2[i]+Gpa3[i]+Gpa4[i])/4"/>
+                                                <output expression="&quot;Old Gpa for term 4 : &quot; &amp;TempGpa4" newline="True"/>
+                                                <output expression="&quot;After configuration : &quot;" newline="True"/>
+                                                <output expression="&quot;New Gpa for term 4 : &quot; &amp;Gpa4[i]" newline="True"/>
+                                            </then>
+                                            <else>
+                                                <if expression="Choice==5">
+                                                    <then>
+                                                        <assign variable="TempGpa5" expression="Gpa5[i]"/>
+                                                        <assign variable="Gpa5[i]" expression="NewGpa"/>
+                                                        <assign variable="TotalGpa[i]" expression="(Gpa1[i]+Gpa2[i]+Gpa3[i]+Gpa4[i]+Gpa5[i])/5"/>
+                                                        <output expression="&quot;Old Gpa for term 5 : &quot; &amp;TempGpa5" newline="True"/>
+                                                        <output expression="&quot;After configuration : &quot;" newline="True"/>
+                                                        <output expression="&quot;New Gpa for term 5 : &quot; &amp;Gpa5[i]" newline="True"/>
+                                                    </then>
+                                                    <else>
+                                                        <if expression="Choice==6">
+                                                            <then>
+                                                                <assign variable="TempGpa6" expression="Gpa6[i]"/>
+                                                                <assign variable="Gpa6[i]" expression="NewGpa"/>
+                                                                <assign variable="TotalGpa[i]" expression="(Gpa1[i]+Gpa2[i]+Gpa3[i]+Gpa4[i]+Gpa5[i]+Gpa6[i])/6"/>
+                                                                <output expression="&quot;Old Gpa for term 6 : &quot; &amp;TempGpa6" newline="True"/>
+                                                                <output expression="&quot;After configuration : &quot;" newline="True"/>
+                                                                <output expression="&quot;New Gpa for term 6 : &quot; &amp;Gpa6[i]" newline="True"/>
+                                                            </then>
+                                                            <else>
+                                                                <if expression="Choice==7">
+                                                                    <then>
+                                                                        <assign variable="TempGpa7" expression="Gpa7[i]"/>
+                                                                        <assign variable="Gpa7[i]" expression="NewGpa"/>
+                                                                        <assign variable="TotalGpa[i]" expression="(Gpa1[i]+Gpa2[i]+Gpa3[i]+Gpa4[i]+Gpa5[i]+Gpa6[i]+Gpa7[i])/7"/>
+                                                                        <output expression="&quot;Old Gpa for term 7 : &quot; &amp;TempGpa7" newline="True"/>
+                                                                        <output expression="&quot;After configuration : &quot;" newline="True"/>
+                                                                        <output expression="&quot;New Gpa for term 7 : &quot; &amp;Gpa7[i]" newline="True"/>
+                                                                    </then>
+                                                                    <else>
+                                                                        <assign variable="TempGpa8" expression="Gpa8[i]"/>
+                                                                        <assign variable="Gpa8[i]" expression="NewGpa"/>
+                                                                        <assign variable="TotalGpa[i]" expression="(Gpa1[i]+Gpa2[i]+Gpa3[i]+Gpa4[i]+Gpa5[i]+Gpa6[i]+Gpa7[i]+Gpa8[i])/8"/>
+                                                                        <output expression="&quot;Old Gpa for term 8 : &quot; &amp;TempGpa8" newline="True"/>
+                                                                        <output expression="&quot;After configuration : &quot;" newline="True"/>
+                                                                        <output expression="&quot;New Gpa for term 8 : &quot; &amp;Gpa8[i]" newline="True"/>
+                                                                    </else>
+                                                                </if>
+                                                            </else>
+                                                        </if>
+                                                    </else>
+                                                </if>
+                                            </else>
+                                        </if>
+                                    </else>
+                                </if>
+                            </else>
+                        </if>
+                    </else>
+                </if>
+            </for>
+            <output expression="&quot;Total Gpa before configuration : &quot; &amp;TempTotalGpa" newline="True"/>
+            <output expression="&quot;Total Gpa after configuration : &quot; &amp;TotalGpa[i]" newline="True"/>
+        </body>
+    </function>
+    <function name="CreditHours" type="None" variable="">
+        <parameters>
+            <parameter name="z" type="Integer" array="False"/>
+            <parameter name="FirstName" type="String" array="True"/>
+            <parameter name="MiddleName" type="String" array="True"/>
+            <parameter name="LastName" type="String" array="True"/>
+            <parameter name="RegNum" type="Integer" array="True"/>
+            <parameter name="Term" type="Integer" array="True"/>
+            <parameter name="FinishedCreditHours" type="Integer" array="True"/>
+            <parameter name="MaxCreditHours" type="Integer" array="True"/>
+            <parameter name="CurrentCreditHours" type="Integer" array="True"/>
+            <parameter name="RemainingCreditHours" type="Integer" array="True"/>
+        </parameters>
+        <body>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <assign variable="i" expression="z"/>
+            <output expression="&quot;Student name : &quot;&amp;FirstName[i]" newline="False"/>
+            <output expression="&quot; &quot;&amp;MiddleName[i]" newline="False"/>
+            <output expression="&quot; &quot;&amp;LastName[i]" newline="True"/>
+            <output expression="&quot;Registration number : &quot; &amp;RegNum[i]" newline="True"/>
+            <output expression="&quot;Student current term : &quot; &amp;Term[i]" newline="True"/>
+            <output expression="&quot;Maximum Credit Hours required for the degree : &quot; &amp;MaxCreditHours[i]" newline="True"/>
+            <output expression="&quot;Finished Credit hours : &quot; &amp;FinishedCreditHours[i]" newline="True"/>
+            <output expression="&quot;Current Credit hours : &quot; &amp;CurrentCreditHours[i]" newline="True"/>
+            <output expression="&quot;Remaining Credit hours : &quot; &amp;RemainingCreditHours[i]" newline="True"/>
+        </body>
+    </function>
+    <function name="GetContactDetails" type="None" variable="">
+        <parameters>
+            <parameter name="i" type="Integer" array="False"/>
+            <parameter name="Country" type="String" array="True"/>
+            <parameter name="Governorate" type="String" array="True"/>
+            <parameter name="City" type="String" array="True"/>
+            <parameter name="District" type="String" array="True"/>
+            <parameter name="StreetName" type="String" array="True"/>
+            <parameter name="HouseNumber" type="String" array="True"/>
+            <parameter name="FlatNumber" type="String" array="True"/>
+            <parameter name="PostalCode" type="String" array="True"/>
+            <parameter name="MailingCountry" type="String" array="True"/>
+            <parameter name="MailingGovernorate" type="String" array="True"/>
+            <parameter name="MailingCity" type="String" array="True"/>
+            <parameter name="MailingDistrict" type="String" array="True"/>
+            <parameter name="MailingStreetName" type="String" array="True"/>
+            <parameter name="MailingHouseNumber" type="String" array="True"/>
+            <parameter name="MailingFlatNumber" type="String" array="True"/>
+            <parameter name="MailingPostalCode" type="String" array="True"/>
+            <parameter name="StudentEmail" type="String" array="True"/>
+            <parameter name="PhoneNumber" type="String" array="True"/>
+            <parameter name="HomePhoneNumber" type="String" array="True"/>
+        </parameters>
+        <body>
+            <declare name="Mailing" type="String" array="False" size=""/>
+            <output expression="&quot;Contact details&quot;" newline="True"/>
+            <output expression="&quot;Enter your country : &quot;" newline="False"/>
+            <input variable="Country[i]"/>
+            <output expression="&quot;Enter your governorate : &quot;" newline="False"/>
+            <input variable="Governorate[i]"/>
+            <output expression="&quot;Enter your city : &quot;" newline="False"/>
+            <input variable="City[i]"/>
+            <output expression="&quot;Enter your district : &quot;" newline="False"/>
+            <input variable="District[i]"/>
+            <output expression="&quot;Enter your street name : &quot;" newline="False"/>
+            <input variable="StreetName[i]"/>
+            <output expression="&quot;Enter your house number : &quot;" newline="False"/>
+            <input variable="HouseNumber[i]"/>
+            <output expression="&quot;Enter your flat number : &quot;" newline="False"/>
+            <input variable="FlatNumber[i]"/>
+            <output expression="&quot;Enter your postal code : &quot;" newline="False"/>
+            <input variable="PostalCode[i]"/>
+            <output expression="&quot;Is the address entered the same as your mailing address ?&quot;" newline="True"/>
+            <input variable="Mailing"/>
+            <if expression="Mailing==&quot;Yes&quot; || Mailing==&quot;YEs&quot; || Mailing==&quot;YES&quot; || Mailing==&quot;yeS&quot; || Mailing==&quot;yES&quot; || Mailing==&quot;yEs&quot; || Mailing==&quot;yes&quot;">
+                <then>
+                    <assign variable="MailingCountry[i]" expression="Country[i]"/>
+                    <assign variable="MailingGovernorate[i]" expression="Governorate[i]"/>
+                    <assign variable="MailingCity[i]" expression="City[i]"/>
+                    <assign variable="MailingDistrict[i]" expression="District[i]"/>
+                    <assign variable="MailingStreetName[i]" expression="StreetName[i]"/>
+                    <assign variable="MailingHouseNumber[i]" expression="HouseNumber[i]"/>
+                    <assign variable="MailingFlatNumber[i]" expression="FlatNumber[i]"/>
+                    <assign variable="MailingPostalCode[i]" expression="PostalCode[i]"/>
+                </then>
+                <else>
+                    <output expression="&quot;Enter your mailing Country : &quot;" newline="False"/>
+                    <input variable="MailingCountry[i]"/>
+                    <output expression="&quot;Enter your mailing Governorate : &quot;" newline="False"/>
+                    <input variable="MailingGovernorate[i]"/>
+                    <output expression="&quot;Enter your mailing City : &quot;" newline="False"/>
+                    <input variable="MailingCity[i]"/>
+                    <output expression="&quot;Enter your mailing District : &quot;" newline="False"/>
+                    <input variable="MailingDistrict[i]"/>
+                    <output expression="&quot;Enter your mailing street name : &quot;" newline="False"/>
+                    <input variable="MailingStreetName[i]"/>
+                    <output expression="&quot;Enter your mailing house number : &quot;" newline="False"/>
+                    <input variable="MailingHouseNumber[i]"/>
+                    <output expression="&quot;Enter your mailing flat number : &quot;" newline="False"/>
+                    <input variable="MailingFlatNumber[i]"/>
+                    <output expression="&quot;Enter your mailing postal code : &quot;" newline="False"/>
+                    <input variable="MailingPostalCode[i]"/>
+                </else>
+            </if>
+            <output expression="&quot;Enter your contact e-mail : &quot;" newline="True"/>
+            <input variable="StudentEmail[i]"/>
+            <output expression="&quot;Enter your phone number : &quot;" newline="False"/>
+            <input variable="PhoneNumber[i]"/>
+            <output expression="&quot;Enter your home phone number : &quot;" newline="False"/>
+            <input variable="HomePhoneNumber[i]"/>
+        </body>
+    </function>
+    <function name="GetCreditHours" type="None" variable="">
+        <parameters>
+            <parameter name="i" type="Integer" array="False"/>
+            <parameter name="FinishedCreditHours" type="Integer" array="True"/>
+            <parameter name="Term" type="Integer" array="True"/>
+            <parameter name="MaxCreditHours" type="Integer" array="True"/>
+            <parameter name="CurrentCreditHours" type="Integer" array="True"/>
+            <parameter name="RemainingCreditHours" type="Integer" array="True"/>
+        </parameters>
+        <body>
+            <output expression="&quot;Enter your finished credit hours : &quot;" newline="False"/>
+            <input variable="FinishedCreditHours[i]"/>
+            <while expression="FinishedCreditHours[i]&lt;0 || FinishedCreditHours[i]&gt;144">
+                <output expression="&quot;Incorrect credit hours entered, Enter your finished credit hours : &quot;" newline="False"/>
+                <input variable="FinishedCreditHours[i]"/>
+            </while>
+            <assign variable="Term[i]" expression="(FinishedCreditHours[i]/18)+1"/>
+            <output expression="&quot;Enter the maximum credit hours required for the degree : &quot;" newline="False"/>
+            <input variable="MaxCreditHours[i]"/>
+            <output expression="&quot;Enter the current credit hours : &quot;" newline="False"/>
+            <input variable="CurrentCreditHours[i]"/>
+            <assign variable="RemainingCreditHours[i]" expression="MaxCreditHours[i]-(FinishedCreditHours[i]+CurrentCreditHours[i])"/>
+        </body>
+    </function>
+    <function name="GetDateOfBirth" type="None" variable="">
+        <parameters>
+            <parameter name="i" type="Integer" array="False"/>
+            <parameter name="DayOfBirth" type="Integer" array="True"/>
+            <parameter name="MonthOfBirth" type="Integer" array="True"/>
+            <parameter name="YearOfBirth" type="Integer" array="True"/>
+        </parameters>
+        <body>
+            <output expression="&quot;Enter your day of birth : &quot;" newline="False"/>
+            <input variable="DayOfBirth[i]"/>
+            <while expression="DayOfBirth[i]&lt;1 || DayOfBirth[i]&gt;31">
+                <output expression="&quot;Incorrect day entered, Enter your day of birth : &quot;" newline="False"/>
+                <input variable="DayOfBirth[i]"/>
+            </while>
+            <output expression="&quot;Enter your month of birth : &quot;" newline="False"/>
+            <input variable="MonthOfBirth[i]"/>
+            <while expression="MonthOfBirth[i]&lt;1 || MonthOfBirth[i]&gt;12">
+                <output expression="&quot;Incorrect month entered, Enter your month of birth : &quot;" newline="False"/>
+                <input variable="MonthOfBirth[i]"/>
+            </while>
+            <output expression="&quot;Enter your year of birth : &quot;" newline="False"/>
+            <input variable="YearOfBirth[i]"/>
+            <while expression="YearOfBirth[i]&lt;1980 || YearOfBirth[i]&gt;2022">
+                <output expression="&quot;Incorrect year entered, Enter your year of birth : &quot;" newline="False"/>
+                <input variable="YearOfBirth[i]"/>
+            </while>
+        </body>
+    </function>
+    <function name="GetGpa" type="None" variable="">
+        <parameters>
+            <parameter name="i" type="Integer" array="False"/>
+            <parameter name="Term" type="Integer" array="True"/>
+            <parameter name="TotalGpa" type="Real" array="True"/>
+            <parameter name="Gpa1" type="Real" array="True"/>
+            <parameter name="Gpa2" type="Real" array="True"/>
+            <parameter name="Gpa3" type="Real" array="True"/>
+            <parameter name="Gpa4" type="Real" array="True"/>
+            <parameter name="Gpa5" type="Real" array="True"/>
+            <parameter name="Gpa6" type="Real" array="True"/>
+            <parameter name="Gpa7" type="Real" array="True"/>
+            <parameter name="Gpa8" type="Real" array="True"/>
+        </parameters>
+        <body>
+            <if expression="Term[i]==1">
+                <then>
+                    <assign variable="TotalGpa[i]" expression="0"/>
+                </then>
+                <else>
+                    <if expression="Term[i]==2">
+                        <then>
+                            <output expression="&quot;Enter your Gpa for the first semester : &quot;" newline="False"/>
+                            <input variable="Gpa1[i]"/>
+                            <assign variable="TotalGpa[i]" expression="Gpa1[i]"/>
+                        </then>
+                        <else>
+                            <if expression="Term[i]==3">
+                                <then>
+                                    <output expression="&quot;Enter your Gpa for the first semester : &quot;" newline="False"/>
+                                    <input variable="Gpa1[i]"/>
+                                    <output expression="&quot;Enter your Gpa for the second semester : &quot;" newline="False"/>
+                                    <input variable="Gpa2[i]"/>
+                                    <assign variable="TotalGpa[i]" expression="(Gpa1[i]+Gpa2[i])/2"/>
+                                </then>
+                                <else>
+                                    <if expression="Term[i]==4">
+                                        <then>
+                                            <output expression="&quot;Enter your Gpa for the first semester : &quot;" newline="False"/>
+                                            <input variable="Gpa1[i]"/>
+                                            <output expression="&quot;Enter your Gpa for the second semester : &quot;" newline="False"/>
+                                            <input variable="Gpa2[i]"/>
+                                            <output expression="&quot;Enter your Gpa for the third semester : &quot;" newline="False"/>
+                                            <input variable="Gpa3[i]"/>
+                                            <assign variable="TotalGpa[i]" expression="(Gpa1[i]+Gpa2[i]+Gpa3[i])/3"/>
+                                        </then>
+                                        <else>
+                                            <if expression="Term[i]==5">
+                                                <then>
+                                                    <output expression="&quot;Enter your Gpa for the first semester : &quot;" newline="False"/>
+                                                    <input variable="Gpa1[i]"/>
+                                                    <output expression="&quot;Enter your Gpa for the second semester : &quot;" newline="False"/>
+                                                    <input variable="Gpa2[i]"/>
+                                                    <output expression="&quot;Enter your Gpa for the third semester : &quot;" newline="False"/>
+                                                    <input variable="Gpa3[i]"/>
+                                                    <output expression="&quot;Enter your Gpa for the fourth semester : &quot;" newline="False"/>
+                                                    <input variable="Gpa4[i]"/>
+                                                    <assign variable="TotalGpa[i]" expression="(Gpa1[i]+Gpa2[i]+Gpa3[i]+Gpa4[i])/4"/>
+                                                </then>
+                                                <else>
+                                                    <if expression="Term[i]==6">
+                                                        <then>
+                                                            <output expression="&quot;Enter your Gpa for the first semester : &quot;" newline="False"/>
+                                                            <input variable="Gpa1[i]"/>
+                                                            <output expression="&quot;Enter your Gpa for the second semester : &quot;" newline="False"/>
+                                                            <input variable="Gpa2[i]"/>
+                                                            <output expression="&quot;Enter your Gpa for the third semester : &quot;" newline="False"/>
+                                                            <input variable="Gpa3[i]"/>
+                                                            <output expression="&quot;Enter your Gpa for the fourth semester : &quot;" newline="False"/>
+                                                            <input variable="Gpa4[i]"/>
+                                                            <output expression="&quot;Enter your Gpa for the fifth semester : &quot;" newline="False"/>
+                                                            <input variable="Gpa5[i]"/>
+                                                            <assign variable="TotalGpa[i]" expression="(Gpa1[i]+Gpa2[i]+Gpa3[i]+Gpa4[i]+Gpa5[i])/5"/>
+                                                        </then>
+                                                        <else>
+                                                            <if expression="Term[i]==7">
+                                                                <then>
+                                                                    <output expression="&quot;Enter your Gpa for the first semester : &quot;" newline="False"/>
+                                                                    <input variable="Gpa1[i]"/>
+                                                                    <output expression="&quot;Enter your Gpa for the second semester : &quot;" newline="False"/>
+                                                                    <input variable="Gpa2[i]"/>
+                                                                    <output expression="&quot;Enter your Gpa for the third semester : &quot;" newline="False"/>
+                                                                    <input variable="Gpa3[i]"/>
+                                                                    <output expression="&quot;Enter your Gpa for the fourth semester : &quot;" newline="False"/>
+                                                                    <input variable="Gpa4[i]"/>
+                                                                    <output expression="&quot;Enter your Gpa for the fifth semester : &quot;" newline="False"/>
+                                                                    <input variable="Gpa5[i]"/>
+                                                                    <output expression="&quot;Enter your Gpa for the sixth semester : &quot;" newline="False"/>
+                                                                    <input variable="Gpa6[i]"/>
+                                                                    <assign variable="TotalGpa[i]" expression="(Gpa1[i]+Gpa2[i]+Gpa3[i]+Gpa4[i]+Gpa5[i]+Gpa6[i])/6"/>
+                                                                </then>
+                                                                <else>
+                                                                    <if expression="Term[i]==8">
+                                                                        <then>
+                                                                            <output expression="&quot;Enter your Gpa for the first semester : &quot;" newline="False"/>
+                                                                            <input variable="Gpa1[i]"/>
+                                                                            <output expression="&quot;Enter your Gpa for the second semester : &quot;" newline="False"/>
+                                                                            <input variable="Gpa2[i]"/>
+                                                                            <output expression="&quot;Enter your Gpa for the third semester : &quot;" newline="False"/>
+                                                                            <input variable="Gpa3[i]"/>
+                                                                            <output expression="&quot;Enter your Gpa for the fourth semester : &quot;" newline="False"/>
+                                                                            <input variable="Gpa4[i]"/>
+                                                                            <output expression="&quot;Enter your Gpa for the fifth semester : &quot;" newline="False"/>
+                                                                            <input variable="Gpa5[i]"/>
+                                                                            <output expression="&quot;Enter your Gpa for the sixth semester : &quot;" newline="False"/>
+                                                                            <input variable="Gpa6[i]"/>
+                                                                            <output expression="&quot;Enter your Gpa for the seventh semester : &quot;" newline="False"/>
+                                                                            <input variable="Gpa7[i]"/>
+                                                                            <assign variable="TotalGpa[i]" expression="(Gpa1[i]+Gpa2[i]+Gpa3[i]+Gpa4[i]+Gpa5[i]+Gpa6[i]+Gpa7[i])/7"/>
+                                                                        </then>
+                                                                        <else>
+                                                                            <output expression="&quot;Enter your Gpa for the first semester : &quot;" newline="False"/>
+                                                                            <input variable="Gpa1[i]"/>
+                                                                            <output expression="&quot;Enter your Gpa for the second semester : &quot;" newline="False"/>
+                                                                            <input variable="Gpa2[i]"/>
+                                                                            <output expression="&quot;Enter your Gpa for the third semester : &quot;" newline="False"/>
+                                                                            <input variable="Gpa3[i]"/>
+                                                                            <output expression="&quot;Enter your Gpa for the fourth semester : &quot;" newline="False"/>
+                                                                            <input variable="Gpa4[i]"/>
+                                                                            <output expression="&quot;Enter your Gpa for the fifth semester : &quot;" newline="False"/>
+                                                                            <input variable="Gpa5[i]"/>
+                                                                            <output expression="&quot;Enter your Gpa for the sixth semester : &quot;" newline="False"/>
+                                                                            <input variable="Gpa6[i]"/>
+                                                                            <output expression="&quot;Enter your Gpa for the seventh semester : &quot;" newline="False"/>
+                                                                            <input variable="Gpa7[i]"/>
+                                                                            <output expression="&quot;Enter your Gpa for the eighth semester : &quot;" newline="False"/>
+                                                                            <input variable="Gpa8[i]"/>
+                                                                            <assign variable="TotalGpa[i]" expression="(Gpa1[i]+Gpa2[i]+Gpa3[i]+Gpa4[i]+Gpa5[i]+Gpa6[i]+Gpa7[i]+Gpa8[i])/8"/>
+                                                                        </else>
+                                                                    </if>
+                                                                </else>
+                                                            </if>
+                                                        </else>
+                                                    </if>
+                                                </else>
+                                            </if>
+                                        </else>
+                                    </if>
+                                </else>
+                            </if>
+                        </else>
+                    </if>
+                </else>
+            </if>
+        </body>
+    </function>
+    <function name="GetPaymentDetails" type="None" variable="">
+        <parameters>
+            <parameter name="i" type="Integer" array="False"/>
+            <parameter name="PaymentMethod" type="String" array="True"/>
+            <parameter name="PaymentsCount" type="Integer" array="True"/>
+            <parameter name="TotalPayment" type="Integer" array="True"/>
+            <parameter name="BankOfTransaction" type="String" array="True"/>
+            <parameter name="TransactionNumber" type="String" array="True"/>
+            <parameter name="AmountPaid" type="Integer" array="True"/>
+            <parameter name="DayOfTransaction" type="Integer" array="True"/>
+            <parameter name="MonthOfTransaction" type="Integer" array="True"/>
+            <parameter name="YearOfTransaction" type="Integer" array="True"/>
+        </parameters>
+        <body>
+            <declare name="k, j" type="Integer" array="False" size=""/>
+            <output expression="&quot;Enter your payment method : &quot;" newline="False"/>
+            <input variable="PaymentMethod[i]"/>
+            <output expression="&quot;Enter the number of payments done (must be a number) : &quot;" newline="False"/>
+            <input variable="PaymentsCount[i]"/>
+            <assign variable="k" expression="PaymentsCount[i]"/>
+            <output expression="&quot;Enter the total amount payed so far : &quot;" newline="False"/>
+            <input variable="TotalPayment[i]"/>
+            <for variable="j" start="0" end="k-1" direction="inc" step="1">
+                <output expression="&quot;Transaction&quot;" newline="True"/>
+                <output expression="&quot;Enter the bank transaction : &quot;" newline="False"/>
+                <input variable="BankOfTransaction[j]"/>
+                <output expression="&quot;Enter the transaction number : &quot;" newline="False"/>
+                <input variable="TransactionNumber[j]"/>
+                <output expression="&quot;Enter the amount paid : &quot;" newline="False"/>
+                <input variable="AmountPaid[j]"/>
+                <output expression="&quot;Enter the day of transaction : &quot;" newline="False"/>
+                <input variable="DayOfTransaction[j]"/>
+                <while expression="DayOfTransaction[j]&lt;1 || DayOfTransaction[j]&gt;31">
+                    <output expression="&quot;Incorrect day entered, Enter the day of transaction : &quot;" newline="False"/>
+                    <input variable="DayOfTransaction[j]"/>
+                </while>
+                <output expression="&quot;Enter the month of transaction : &quot;" newline="False"/>
+                <input variable="MonthOfTransaction[j]"/>
+                <while expression="MonthOfTransaction[j]&lt;1 || MonthOfTransaction[j]&gt;12">
+                    <output expression="&quot;Incorrect month entered, Enter the month of transaction : &quot;" newline="False"/>
+                    <input variable="MonthOfTransaction[j]"/>
+                </while>
+                <output expression="&quot;Enter the year of transaction : &quot;" newline="False"/>
+                <input variable="YearOfTransaction[j]"/>
+                <while expression="YearOfTransaction[j]&lt;1980 || YearOfTransaction[j]&gt;2022">
+                    <output expression="&quot;Incorrect year entered, Enter the year of transaction : &quot;" newline="False"/>
+                    <input variable="YearOfTransaction[j]"/>
+                </while>
+            </for>
+        </body>
+    </function>
+    <function name="GetPersonalInfo" type="None" variable="">
+        <parameters>
+            <parameter name="i" type="Integer" array="False"/>
+            <parameter name="FirstName" type="String" array="True"/>
+            <parameter name="MiddleName" type="String" array="True"/>
+            <parameter name="LastName" type="String" array="True"/>
+            <parameter name="Gender" type="String" array="True"/>
+            <parameter name="Nationality" type="String" array="True"/>
+            <parameter name="IdType" type="String" array="True"/>
+            <parameter name="StudentId" type="String" array="True"/>
+            <parameter name="Password" type="String" array="True"/>
+        </parameters>
+        <body>
+            <output expression="&quot;Student personal information&quot;" newline="True"/>
+            <output expression="&quot;Enter your first name: &quot;" newline="False"/>
+            <input variable="FirstName[i]"/>
+            <output expression="&quot;Enter your middle name: &quot;" newline="False"/>
+            <input variable="MiddleName[i]"/>
+            <output expression="&quot;Enter your last name: &quot;" newline="False"/>
+            <input variable="LastName[i]"/>
+            <output expression="&quot;Enter your gender&quot;" newline="True"/>
+            <input variable="Gender[i]"/>
+            <output expression="&quot;Enter your nationality : &quot;" newline="False"/>
+            <input variable="Nationality[i]"/>
+            <output expression="&quot;please choose the type of id either national ID or passport : &quot;" newline="False"/>
+            <input variable="IdType[i]"/>
+            <output expression="&quot;Enter your id number : &quot;" newline="False"/>
+            <input variable="StudentId[i]"/>
+            <output expression="&quot;Enter your password : &quot;" newline="False"/>
+            <input variable="Password[i]"/>
+        </body>
+    </function>
+    <function name="GetUniDetails" type="None" variable="">
+        <parameters>
+            <parameter name="i" type="Integer" array="False"/>
+            <parameter name="EnrolmentTerm" type="String" array="True"/>
+            <parameter name="EnrolmentYear" type="Integer" array="True"/>
+            <parameter name="RegNum" type="Integer" array="True"/>
+            <parameter name="Department" type="String" array="True"/>
+            <parameter name="InstructorName" type="String" array="True"/>
+            <parameter name="InstructorCode" type="String" array="True"/>
+        </parameters>
+        <body>
+            <declare name="NewStu" type="String" array="False" size=""/>
+            <declare name="RegNumCheck" type="Integer" array="False" size=""/>
+            <output expression="&quot;University details&quot;" newline="True"/>
+            <output expression="&quot;Enter your first enrolment term : &quot;" newline="False"/>
+            <input variable="EnrolmentTerm[i]"/>
+            <output expression="&quot;Enter your enrolment year : &quot;" newline="True"/>
+            <input variable="EnrolmentYear[i]"/>
+            <while expression="EnrolmentYear[i]&lt;1980 || EnrolmentYear[i]&gt;2022">
+                <output expression="&quot;Incorrect year entered, Enter your enrolment year : &quot;" newline="False"/>
+                <input variable="EnrolmentYear[i]"/>
+            </while>
+            <output expression="&quot;Are you a new student ? &quot;" newline="True"/>
+            <input variable="NewStu"/>
+            <if expression="NewStu==&quot;Yes&quot; || NewStu==&quot;YEs&quot; || NewStu==&quot;YES&quot; || NewStu==&quot;yeS&quot; || NewStu==&quot;yES&quot; || NewStu==&quot;yEs&quot; || NewStu==&quot;yes&quot;">
+                <then>
+                    <assign variable="RegNum[i]" expression="2022000+i"/>
+                    <output expression="&quot;Your registration number is : &quot; &amp;RegNum[i]" newline="True"/>
+                </then>
+                <else>
+                    <output expression="&quot;Enter your registration number : &quot;" newline="True"/>
+                    <input variable="RegNum[i]"/>
+                    <assign variable="RegNumCheck" expression="RegNum[i]/1000"/>
+                    <while expression="RegNumCheck!=EnrolmentYear[i]">
+                        <output expression="&quot;Incorrect registration number entered, enter your registration number : &quot;" newline="True"/>
+                        <input variable="RegNum[i]"/>
+                        <assign variable="RegNumCheck" expression="RegNum[i]/1000"/>
+                    </while>
+                </else>
+            </if>
+            <output expression="&quot;Enter your department of enrolment : &quot;" newline="False"/>
+            <input variable="Department[i]"/>
+            <output expression="&quot;Enter your instructor name : &quot;" newline="True"/>
+            <input variable="InstructorName[i]"/>
+            <output expression="&quot;Enter your instructor code : &quot;" newline="True"/>
+            <input variable="InstructorCode[i]"/>
+        </body>
+    </function>
+    <function name="PrintStudentData" type="None" variable="">
+        <parameters>
+            <parameter name="z" type="Integer" array="False"/>
+            <parameter name="FirstName" type="String" array="True"/>
+            <parameter name="MiddleName" type="String" array="True"/>
+            <parameter name="LastName" type="String" array="True"/>
+            <parameter name="Gender" type="String" array="True"/>
+            <parameter name="Nationality" type="String" array="True"/>
+            <parameter name="DayOfBirth" type="Integer" array="True"/>
+            <parameter name="MonthOfBirth" type="Integer" array="True"/>
+            <parameter name="YearOfBirth" type="Integer" array="True"/>
+            <parameter name="IdType" type="String" array="True"/>
+            <parameter name="StudentId" type="String" array="True"/>
+            <parameter name="Password" type="String" array="True"/>
+            <parameter name="Country" type="String" array="True"/>
+            <parameter name="Governorate" type="String" array="True"/>
+            <parameter name="City" type="String" array="True"/>
+            <parameter name="District" type="String" array="True"/>
+            <parameter name="StreetName" type="String" array="True"/>
+            <parameter name="HouseNumber" type="String" array="True"/>
+            <parameter name="FlatNumber" type="String" array="True"/>
+            <parameter name="PostalCode" type="String" array="True"/>
+            <parameter name="MailingCountry" type="String" array="True"/>
+            <parameter name="MailingGovernorate" type="String" array="True"/>
+            <parameter name="MailingCity" type="String" array="True"/>
+            <parameter name="MailingDistrict" type="String" array="True"/>
+            <parameter name="MailingStreetName" type="String" array="True"/>
+            <parameter name="MailingHouseNumber" type="String" array="True"/>
+            <parameter name="MailingFlatNumber" type="String" array="True"/>
+            <parameter name="MailingPostalCode" type="String" array="True"/>
+            <parameter name="StudentEmail" type="String" array="True"/>
+            <parameter name="PhoneNumber" type="String" array="True"/>
+            <parameter name="HomePhoneNumber" type="String" array="True"/>
+            <parameter name="EnrolmentTerm" type="String" array="True"/>
+            <parameter name="EnrolmentYear" type="Integer" array="True"/>
+            <parameter name="RegNum" type="Integer" array="True"/>
+            <parameter name="Department" type="String" array="True"/>
+            <parameter name="InstructorName" type="String" array="True"/>
+            <parameter name="InstructorCode" type="String" array="True"/>
+            <parameter name="FinishedCreditHours" type="Integer" array="True"/>
+            <parameter name="Term" type="Integer" array="True"/>
+            <parameter name="PaymentMethod" type="String" array="True"/>
+            <parameter name="PaymentsCount" type="Integer" array="True"/>
+            <parameter name="TotalPayment" type="Integer" array="True"/>
+            <parameter name="BankOfTransaction" type="String" array="True"/>
+            <parameter name="TransactionNumber" type="String" array="True"/>
+            <parameter name="AmountPaid" type="Integer" array="True"/>
+            <parameter name="DayOfTransaction" type="Integer" array="True"/>
+            <parameter name="MonthOfTransaction" type="Integer" array="True"/>
+            <parameter name="YearOfTransaction" type="Integer" array="True"/>
+            <parameter name="MaxCreditHours" type="Integer" array="True"/>
+            <parameter name="CurrentCreditHours" type="Integer" array="True"/>
+            <parameter name="RemainingCreditHours" type="Integer" array="True"/>
+            <parameter name="TotalGpa" type="Real" array="True"/>
+            <parameter name="Gpa1" type="Real" array="True"/>
+            <parameter name="Gpa2" type="Real" array="True"/>
+            <parameter name="Gpa3" type="Real" array="True"/>
+            <parameter name="Gpa4" type="Real" array="True"/>
+            <parameter name="Gpa5" type="Real" array="True"/>
+            <parameter name="Gpa6" type="Real" array="True"/>
+            <parameter name="Gpa7" type="Real" array="True"/>
+            <parameter name="Gpa8" type="Real" array="True"/>
+        </parameters>
+        <body>
+            <declare name="i, k, j" type="Integer" array="False" size=""/>
+            <assign variable="i" expression="z"/>
+            <output expression="&quot;Student personal information&quot;" newline="True"/>
+            <output expression="&quot;first name: &quot; &amp;FirstName[i]" newline="True"/>
+            <output expression="&quot;Middle name: &quot; &amp;MiddleName[i]" newline="True"/>
+            <output expression="&quot;Last name: &quot; &amp;LastName[i]" newline="True"/>
+            <output expression="&quot;Gender : &quot; &amp;Gender[i]" newline="True"/>
+            <output expression="&quot;Nationality : &quot; &amp;Nationality[i]" newline="True"/>
+            <output expression="&quot;Day of birth : &quot; &amp;DayOfBirth[i]" newline="True"/>
+            <output expression="&quot;Month of birth : &quot; &amp;MonthOfBirth[i]" newline="True"/>
+            <output expression="&quot;Year of birth : &quot; &amp;YearOfBirth[i]" newline="True"/>
+            <output expression="&quot;Type of id : &quot; &amp;IdType[i]" newline="True"/>
+            <output expression="&quot;Id number : &quot; &amp;StudentId[i]" newline="True"/>
+            <output expression="&quot;Contact details&quot;" newline="True"/>
+            <output expression="&quot;Country : &quot; &amp;Country[i]" newline="True"/>
+            <output expression="&quot;Governorate : &quot; &amp;Governorate[i]" newline="True"/>
+            <output expression="&quot;City : &quot; &amp;City[i]" newline="True"/>
+            <output expression="&quot;District : &quot; &amp;District[i]" newline="True"/>
+            <output expression="&quot;Street name : &quot; &amp;StreetName[i]" newline="True"/>
+            <output expression="&quot;House number : &quot; &amp;HouseNumber[i]" newline="True"/>
+            <output expression="&quot;Flat number : &quot; &amp;FlatNumber[i]" newline="True"/>
+            <output expression="&quot;Postal code : &quot; &amp;PostalCode[i]" newline="True"/>
+            <output expression="&quot;Mailing Country : &quot; &amp;MailingCountry[i]" newline="True"/>
+            <output expression="&quot;Mailing Governorate : &quot; &amp;MailingGovernorate[i]" newline="True"/>
+            <output expression="&quot;Mailing City : &quot; &amp;MailingCity[i]" newline="True"/>
+            <output expression="&quot;Mailing District : &quot; &amp;MailingDistrict[i]" newline="True"/>
+            <output expression="&quot;Mailing street name : &quot; &amp;MailingStreetName[i]" newline="True"/>
+            <output expression="&quot;Mailing house number : &quot; &amp;MailingHouseNumber[i]" newline="True"/>
+            <output expression="&quot;Mailing flat number : &quot; &amp;MailingFlatNumber[i]" newline="True"/>
+            <output expression="&quot;Mailing postal code : &quot; &amp;MailingPostalCode[i]" newline="True"/>
+            <output expression="&quot;Contact e-mail : &quot; &amp;StudentEmail[i]" newline="True"/>
+            <output expression="&quot;Phone number : &quot; &amp;PhoneNumber[i]" newline="True"/>
+            <output expression="&quot;Home phone number : &quot; &amp;HomePhoneNumber[i]" newline="True"/>
+            <output expression="&quot;University details&quot;" newline="True"/>
+            <output expression="&quot;First enrolment term : &quot; &amp;EnrolmentTerm[i]" newline="True"/>
+            <output expression="&quot;Enrolment year : &quot; &amp;EnrolmentYear[i]" newline="True"/>
+            <output expression="&quot;RegNum : &quot; &amp;RegNum[i]" newline="True"/>
+            <output expression="&quot;Department of enrolment : &quot; &amp;Department[i]" newline="True"/>
+            <output expression="&quot;Instructor name : &quot; &amp;InstructorName[i]" newline="True"/>
+            <output expression="&quot;Instructor code : &quot; &amp;InstructorCode[i]" newline="True"/>
+            <output expression="&quot;Finished credit hours : &quot; &amp;FinishedCreditHours[i]" newline="True"/>
+            <output expression="&quot;Term : &quot; &amp;Term[i]" newline="True"/>
+            <output expression="&quot;Payment method : &quot; &amp;PaymentMethod[i]" newline="True"/>
+            <output expression="&quot;Number of payments done : &quot; &amp;PaymentsCount[i]" newline="True"/>
+            <assign variable="k" expression="PaymentsCount[i]"/>
+            <output expression="&quot;Total amount payed so far : &quot; &amp;TotalPayment[i]" newline="True"/>
+            <for variable="j" start="0" end="k-1" direction="inc" step="1">
+                <output expression="&quot;Transaction&quot;" newline="True"/>
+                <output expression="&quot;Bank transaction : &quot; &amp;BankOfTransaction[j]" newline="True"/>
+                <output expression="&quot;Transaction number : &quot; &amp;TransactionNumber[j]" newline="True"/>
+                <output expression="&quot;Amount paid : &quot; &amp;AmountPaid[j]" newline="True"/>
+                <output expression="&quot;Day of transaction : &quot; &amp;DayOfTransaction[j]" newline="True"/>
+                <output expression="&quot;Month of transaction : &quot; &amp;MonthOfTransaction[j]" newline="True"/>
+                <output expression="&quot;Year of transaction : &quot; &amp;YearOfTransaction[j]" newline="True"/>
+            </for>
+            <output expression="&quot;Maximum credit hours required for the degree : &quot; &amp;MaxCreditHours[i]" newline="True"/>
+            <output expression="&quot;Current credit hours : &quot; &amp;CurrentCreditHours[i]" newline="True"/>
+            <output expression="&quot;Remaining credit hours : &quot; &amp;RemainingCreditHours[i]" newline="True"/>
+            <if expression="Term[i]==1">
+                <then/>
+                <else>
+                    <if expression="Term[i]==2">
+                        <then>
+                            <output expression="&quot;Gpa for the first semester : &quot; &amp;Gpa1[i]" newline="True"/>
+                        </then>
+                        <else>
+                            <if expression="Term[i]==3">
+                                <then>
+                                    <output expression="&quot;Gpa for the first semester : &quot; &amp;Gpa1[i]" newline="True"/>
+                                    <output expression="&quot;Gpa for the second semester : &quot; &amp;Gpa2[i]" newline="True"/>
+                                </then>
+                                <else>
+                                    <if expression="Term[i]==4">
+                                        <then>
+                                            <output expression="&quot;Gpa for the first semester : &quot; &amp;Gpa1[i]" newline="True"/>
+                                            <output expression="&quot;Gpa for the second semester : &quot; &amp;Gpa2[i]" newline="True"/>
+                                            <output expression="&quot;Gpa for the third semester : &quot; &amp;Gpa3[i]" newline="True"/>
+                                        </then>
+                                        <else>
+                                            <if expression="Term[i]==5">
+                                                <then>
+                                                    <output expression="&quot;Gpa for the first semester : &quot; &amp;Gpa1[i]" newline="True"/>
+                                                    <output expression="&quot;Gpa for the second semester : &quot; &amp;Gpa2[i]" newline="True"/>
+                                                    <output expression="&quot;Gpa for the third semester : &quot; &amp;Gpa3[i]" newline="True"/>
+                                                    <output expression="&quot;Gpa for the fourth semester : &quot; &amp;Gpa4[i]" newline="True"/>
+                                                </then>
+                                                <else>
+                                                    <if expression="Term[i]==6">
+                                                        <then>
+                                                            <output expression="&quot;Gpa for the first semester : &quot; &amp;Gpa1[i]" newline="True"/>
+                                                            <output expression="&quot;Gpa for the second semester : &quot; &amp;Gpa2[i]" newline="True"/>
+                                                            <output expression="&quot;Gpa for the third semester : &quot; &amp;Gpa3[i]" newline="True"/>
+                                                            <output expression="&quot;Gpa for the fourth semester : &quot; &amp;Gpa4[i]" newline="True"/>
+                                                            <output expression="&quot;Gpa for the fifth semester : &quot; &amp;Gpa5[i]" newline="True"/>
+                                                        </then>
+                                                        <else>
+                                                            <if expression="Term[i]==7">
+                                                                <then>
+                                                                    <output expression="&quot;Gpa for the first semester : &quot; &amp;Gpa1[i]" newline="True"/>
+                                                                    <output expression="&quot;Gpa for the second semester : &quot; &amp;Gpa2[i]" newline="True"/>
+                                                                    <output expression="&quot;Gpa for the third semester : &quot; &amp;Gpa3[i]" newline="True"/>
+                                                                    <output expression="&quot;Gpa for the fourth semester : &quot; &amp;Gpa4[i]" newline="True"/>
+                                                                    <output expression="&quot;Gpa for the fifth semester : &quot; &amp;Gpa5[i]" newline="True"/>
+                                                                    <output expression="&quot;Gpa for the sixth semester : &quot; &amp;Gpa6[i]" newline="True"/>
+                                                                </then>
+                                                                <else>
+                                                                    <if expression="Term[i]==8">
+                                                                        <then>
+                                                                            <output expression="&quot;Gpa for the first semester : &quot; &amp;Gpa1[i]" newline="True"/>
+                                                                            <output expression="&quot;Gpa for the second semester : &quot; &amp;Gpa2[i]" newline="True"/>
+                                                                            <output expression="&quot;Gpa for the third semester : &quot; &amp;Gpa3[i]" newline="True"/>
+                                                                            <output expression="&quot;Gpa for the fourth semester : &quot; &amp;Gpa4[i]" newline="True"/>
+                                                                            <output expression="&quot;Gpa for the fifth semester : &quot; &amp;Gpa5[i]" newline="True"/>
+                                                                            <output expression="&quot;Gpa for the sixth semester : &quot; &amp;Gpa6[i]" newline="True"/>
+                                                                            <output expression="&quot;Gpa for the seventh semester : &quot; &amp;Gpa7[i]" newline="True"/>
+                                                                        </then>
+                                                                        <else>
+                                                                            <output expression="&quot;Gpa for the first semester : &quot; &amp;Gpa1[i]" newline="True"/>
+                                                                            <output expression="&quot;Gpa for the second semester : &quot; &amp;Gpa2[i]" newline="True"/>
+                                                                            <output expression="&quot;Gpa for the third semester : &quot; &amp;Gpa3[i]" newline="True"/>
+                                                                            <output expression="&quot;Gpa for the fourth semester : &quot; &amp;Gpa4[i]" newline="True"/>
+                                                                            <output expression="&quot;Gpa for the fifth semester : &quot; &amp;Gpa5[i]" newline="True"/>
+                                                                            <output expression="&quot;Gpa for the sixth semester : &quot; &amp;Gpa6[i]" newline="True"/>
+                                                                            <output expression="&quot;Gpa for the seventh semester : &quot; &amp;Gpa7[i]" newline="True"/>
+                                                                            <output expression="&quot;Gpa for the eighth semester : &quot; &amp;Gpa8[i]" newline="True"/>
+                                                                            <output expression="&quot;Congratulaaaatiiions !!!!&quot;" newline="True"/>
+                                                                        </else>
+                                                                    </if>
+                                                                </else>
+                                                            </if>
+                                                        </else>
+                                                    </if>
+                                                </else>
+                                            </if>
+                                        </else>
+                                    </if>
+                                </else>
+                            </if>
+                        </else>
+                    </if>
+                </else>
+            </if>
+            <output expression="&quot;Total Gpa : &quot; &amp;TotalGpa[i]" newline="True"/>
+        </body>
+    </function>
+    <function name="RefPassword" type="Integer" variable="z">
+        <parameters>
+            <parameter name="RegNum" type="Integer" array="True"/>
+            <parameter name="Password" type="String" array="True"/>
+        </parameters>
+        <body>
+            <declare name="EntryPassword" type="String" array="False" size=""/>
+            <declare name="z, EntryRegNum, i, test" type="Integer" array="False" size=""/>
+            <assign variable="test" expression="0"/>
+            <output expression="&quot;Enter your reg num : &quot;" newline="True"/>
+            <input variable="EntryRegNum"/>
+            <output expression="&quot;Enter your password : &quot;" newline="True"/>
+            <input variable="EntryPassword"/>
+            <for variable="i" start="0" end="1" direction="inc" step="1">
+                <if expression="RegNum[i]==EntryRegNum">
+                    <then>
+                        <assign variable="z" expression="i"/>
+                        <assign variable="test" expression="1"/>
+                    </then>
+                    <else/>
+                </if>
+            </for>
+            <while expression="test==0">
+                <output expression="&quot;Incorrect registration number entered, please enter a valid registation number and password&quot;" newline="True"/>
+                <output expression="&quot;Enter your reg num : &quot;" newline="True"/>
+                <input variable="EntryRegNum"/>
+                <output expression="&quot;Enter your password : &quot;" newline="True"/>
+                <input variable="EntryPassword"/>
+                <for variable="i" start="0" end="1" direction="inc" step="1">
+                    <if expression="RegNum[i]==EntryRegNum">
+                        <then>
+                            <assign variable="z" expression="i"/>
+                            <assign variable="test" expression="1"/>
+                        </then>
+                        <else/>
+                    </if>
+                </for>
+            </while>
+            <while expression="Password[z]!=EntryPassword">
+                <output expression="&quot;Incorrect password ,Enter your password : &quot;" newline="True"/>
+                <input variable="EntryPassword"/>
+            </while>
+        </body>
+    </function>
+    <function name="ScanStudentData" type="None" variable="">
+        <parameters>
+            <parameter name="FirstName" type="String" array="True"/>
+            <parameter name="MiddleName" type="String" array="True"/>
+            <parameter name="LastName" type="String" array="True"/>
+            <parameter name="Gender" type="String" array="True"/>
+            <parameter name="Nationality" type="String" array="True"/>
+            <parameter name="DayOfBirth" type="Integer" array="True"/>
+            <parameter name="MonthOfBirth" type="Integer" array="True"/>
+            <parameter name="YearOfBirth" type="Integer" array="True"/>
+            <parameter name="IdType" type="String" array="True"/>
+            <parameter name="StudentId" type="String" array="True"/>
+            <parameter name="Password" type="String" array="True"/>
+            <parameter name="Country" type="String" array="True"/>
+            <parameter name="Governorate" type="String" array="True"/>
+            <parameter name="City" type="String" array="True"/>
+            <parameter name="District" type="String" array="True"/>
+            <parameter name="StreetName" type="String" array="True"/>
+            <parameter name="HouseNumber" type="String" array="True"/>
+            <parameter name="FlatNumber" type="String" array="True"/>
+            <parameter name="PostalCode" type="String" array="True"/>
+            <parameter name="MailingCountry" type="String" array="True"/>
+            <parameter name="MailingGovernorate" type="String" array="True"/>
+            <parameter name="MailingCity" type="String" array="True"/>
+            <parameter name="MailingDistrict" type="String" array="True"/>
+            <parameter name="MailingStreetName" type="String" array="True"/>
+            <parameter name="MailingHouseNumber" type="String" array="True"/>
+            <parameter name="MailingFlatNumber" type="String" array="True"/>
+            <parameter name="MailingPostalCode" type="String" array="True"/>
+            <parameter name="StudentEmail" type="String" array="True"/>
+            <parameter name="PhoneNumber" type="String" array="True"/>
+            <parameter name="HomePhoneNumber" type="String" array="True"/>
+            <parameter name="EnrolmentTerm" type="String" array="True"/>
+            <parameter name="EnrolmentYear" type="Integer" array="True"/>
+            <parameter name="RegNum" type="Integer" array="True"/>
+            <parameter name="Department" type="String" array="True"/>
+            <parameter name="InstructorName" type="String" array="True"/>
+            <parameter name="InstructorCode" type="String" array="True"/>
+            <parameter name="FinishedCreditHours" type="Integer" array="True"/>
+            <parameter name="Term" type="Integer" array="True"/>
+            <parameter name="PaymentMethod" type="String" array="True"/>
+            <parameter name="PaymentsCount" type="Integer" array="True"/>
+            <parameter name="TotalPayment" type="Integer" array="True"/>
+            <parameter name="BankOfTransaction" type="String" array="True"/>
+            <parameter name="TransactionNumber" type="String" array="True"/>
+            <parameter name="AmountPaid" type="Integer" array="True"/>
+            <parameter name="DayOfTransaction" type="Integer" array="True"/>
+            <parameter name="MonthOfTransaction" type="Integer" array="True"/>
+            <parameter name="YearOfTransaction" type="Integer" array="True"/>
+            <parameter name="MaxCreditHours" type="Integer" array="True"/>
+            <parameter name="CurrentCreditHours" type="Integer" array="True"/>
+            <parameter name="RemainingCreditHours" type="Integer" array="True"/>
+            <parameter name="TotalGpa" type="Real" array="True"/>
+            <parameter name="Gpa1" type="Real" array="True"/>
+            <parameter name="Gpa2" type="Real" array="True"/>
+            <parameter name="Gpa3" type="Real" array="True"/>
+            <parameter name="Gpa4" type="Real" array="True"/>
+            <parameter name="Gpa5" type="Real" array="True"/>
+            <parameter name="Gpa6" type="Real" array="True"/>
+            <parameter name="Gpa7" type="Real" array="True"/>
+            <parameter name="Gpa8" type="Real" array="True"/>
+        </parameters>
+        <body>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <for variable="i" start="0" end="1" direction="inc" step="1">
+                <call expression="GetPersonalInfo(i,FirstName,MiddleName,LastName,Gender,Nationality,IdType,StudentId,Password)"/>
+                <call expression="GetDateOfBirth(i,DayOfBirth,MonthOfBirth,YearOfBirth)"/>
+                <call expression="GetContactDetails(i,Country,Governorate,City,District,StreetName,HouseNumber,FlatNumber,PostalCode,MailingCountry, MailingGovernorate, MailingCity, MailingDistrict, MailingStreetName, MailingHouseNumber, MailingFlatNumber, MailingPostalCode,StudentEmail,PhoneNumber,HomePhoneNumber)"/>
+                <call expression="GetUniDetails(i,EnrolmentTerm,EnrolmentYear,RegNum,Department, InstructorName, InstructorCode)"/>
+                <call expression="GetPaymentDetails(i,PaymentMethod,PaymentsCount,TotalPayment,BankOfTransaction,TransactionNumber,AmountPaid,DayOfTransaction,MonthOfTransaction,YearOfTransaction)"/>
+                <call expression="GetCreditHours(i,FinishedCreditHours,Term,MaxCreditHours, CurrentCreditHours,RemainingCreditHours)"/>
+                <call expression="GetGpa(i,Term,TotalGpa,Gpa1,Gpa2,Gpa3,Gpa4,Gpa5,Gpa6,Gpa7,Gpa8)"/>
+            </for>
+        </body>
+    </function>
+</flowgorithm>
