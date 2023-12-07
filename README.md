@@ -5,4 +5,4 @@ system which requires a database of the student’s data this data is the used t
 ___
 - The repository includes:
   1. Full registration system built in c++ and a flowchart (but the flowchart does not implement all the functions available in the c++ code).
-  2. A full documentation of the project
+  2. A full documentation of the project for both the c++ code and flowcahrt
