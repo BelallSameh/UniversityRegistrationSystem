@@ -1,8 +1,55 @@
-# UniversityRegistrationSystem
-## Main idea
-The problem to be solved in this project is to design a university registration 
-system which requires a database of the student’s data this data is the used to perform different functions on it. The tasks that a registration system can do from the student’s data are uncountable. Mainly in this project I will try to perform tasks such as: allow the student to access the data and configure it only by entering the correct username and password, display all the data of a specific student, display the wanted data, configure the GPA of the student if any of the data of the his/her course data is changed, configure the student contact details that is already saved in the database, add any new payment that has been done, configure any course details, and sort the students according to their GPAs.
-___
-- The repository includes:
-  1. Full registration system built in c++ and a flowchart (but the flowchart does not implement all the functions available in the c++ code).
-  2. A full documentation of the project for both the c++ code and flowcahrt.
+# 🎓 University Registration System
+
+## 🏫 Main Idea
+
+The **UniversityRegistrationSystem** project aims to create a comprehensive university registration system using a database of student data. The system offers a variety of functions, including:
+- Secure student access with username and password
+- Viewing and editing student data
+- Dynamic GPA calculation based on course data changes
+- Updating student contact details
+- Recording new payments
+- Modifying course details
+- Sorting students by GPA
+
+## 📂 Repository Contents
+
+- **💻 C++ Code**: Full registration system implementation
+- **📊 Flowchart**: Visual representation of the system (note: not all functions in C++ code are implemented in the flowchart)
+- **📚 Documentation**: Detailed documentation for both the C++ code and the flowchart
+
+## 🚀 Getting Started
+
+1. **Clone the Repository**:
+    ```bash
+    git clone https://github.com/yourusername/UniversityRegistrationSystem.git
+    cd UniversityRegistrationSystem
+    ```
+
+2. **Compile and Run the C++ Code**:
+    - Use your preferred C++ compiler to compile the code.
+    - Run the compiled program to interact with the registration system.
+
+3. **Review the Flowchart and Documentation**:
+    - Open the flowchart and documentation files to understand the system's design and functionality.
+
+## 🌟 Features
+
+- **Secure Access**: Login with username and password
+- **Data Management**: View and edit student data
+- **GPA Calculation**: Automatic updates based on course data changes
+- **Contact Details**: Update student contact information
+- **Payment Recording**: Add new payments
+- **Course Management**: Edit course details
+- **GPA Sorting**: Sort students by GPA
+
+## 🤝 Contributing
+
+Contributions are welcome! Please:
+1. Fork the repo
+2. Create a new branch (`feature-branch`)
+3. Commit your changes (`'Add new feature'`)
+4. Push and open a pull request
+
+## 📬 Contact
+
+For any questions or issues, please contact belalsameh188@gmail.com or open an issue in the repository.
