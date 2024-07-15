@@ -21,7 +21,7 @@ The **UniversityRegistrationSystem** project aims to create a comprehensive univ
 
 1. **Clone the Repository**:
     ```bash
-    git clone https://github.com/yourusername/UniversityRegistrationSystem.git
+    git clone https://github.com/BelallSameh/UniversityRegistrationSystem.git
     cd UniversityRegistrationSystem
     ```
 
